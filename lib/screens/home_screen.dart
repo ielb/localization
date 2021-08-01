@@ -38,10 +38,8 @@ class _HomeState extends State<Home> {
                 child: Text(e)
               )).toList(),
               onChanged:  (String? newValue){
-                  setState(() {
-                    dropdownvalue = newValue;
+                
                     _changeLanguage(newValue);
-                  });
                   
                 },
             ),

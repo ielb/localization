@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get.dart';
 import 'package:localization/controllers/langauges.dart';
 import 'package:localization/controllers/localizationController.dart';
 import 'screens/screens.dart';
@@ -55,7 +54,7 @@ class _MyAppState extends State<MyApp> {
       );
     } else {
       print("new lang ${_locale?.languageCode}");
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
         '/home':(context) => Home()
