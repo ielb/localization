@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:localization/config/config.dart';
+import 'package:localization/controllers/langauges.dart';
 import 'package:localization/controllers/localizationController.dart';
+import 'package:localization/main.dart';
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
 
@@ -11,12 +12,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String? dropdownvalue ;
-  List<String> items = ['English','Frensh',"العربية"];
-  LocalizationController langController = LocalizationController() ;
-  @override
-  void initState() {
-    super.initState();
-    langController = Get.find<LocalizationController>();
+  List<String> items = ['en','fr',"ar"];
+
+  void _changeLanguage(String? lng )async{
+    Locale _locale = await setLocale(lng??'en');
+    MyApp.setLocale(context, _locale);
   }
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
       
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(langController.getTitle,textAlign: TextAlign.left,style: TextStyle(color: Colors.black,fontSize: 26,fontWeight: FontWeight.w400,),),
+        title: Text(DemoLocalizations.of(context).title,textAlign: TextAlign.left,style: TextStyle(color: Colors.black,fontSize: 26,fontWeight: FontWeight.w400,),),
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
@@ -40,24 +40,9 @@ class _HomeState extends State<Home> {
               onChanged:  (String? newValue){
                   setState(() {
                     dropdownvalue = newValue;
+                    _changeLanguage(newValue);
                   });
-                  switch (newValue){
-                    case "English":
-                      setState(() {
-                        langController.changeLang( 'en');
-                      });
-                      break;
-                    case "Frensh":
-                      setState(() {
-                        langController.changeLang( 'fr');
-                      });
-                      break;
-                    case "العربية":
-                      setState(() {
-                        langController.changeLang('ar');
-                      });
-                      break;
-                  }
+                  
                 },
             ),
 
@@ -70,7 +55,7 @@ class _HomeState extends State<Home> {
         height: getHeight(context),
         width: getWidth(context),
         child: Center(
-          child: Text(langController.getContent  ,textAlign: TextAlign.left,style: TextStyle(color: Colors.black,fontSize: 26,fontWeight: FontWeight.w400,),),
+          child: Text(DemoLocalizations.of(context).content ,textAlign: TextAlign.left,style: TextStyle(color: Colors.black,fontSize: 26,fontWeight: FontWeight.w400,),),
         ),
       ),
     );

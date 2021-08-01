@@ -28,6 +28,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.3.0
   intl: ^0.17.0
+  shared_preferences: ^2.0.6
 
 dev_dependencies:
   flutter_test:
@@ -44,10 +45,9 @@ flutter:
   generate: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/l10n/app_en.arb
-    - lib/l10n/app_ar.arb
-    - lib/l10n/app_fr.arb
-  #   - images/a_dot_ham.jpeg
+      - lib/lang/ar.json
+      - lib/lang/fr.json
+      - lib/lang/en.json 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
